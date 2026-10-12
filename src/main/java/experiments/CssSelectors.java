@@ -51,6 +51,7 @@ public class CssSelectors {
         WebElement textInForms = driver.findElement
                 (By.cssSelector("div.category-cards a:nth-child(2) div div div.card-body h5"));
         System.out.println(textInForms.getText());
+
         pause(3000);
         driver.quit();
     }
