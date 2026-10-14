@@ -3,10 +3,8 @@ package pages;
 import dto.Student;
 import enums.Gender;
 import enums.Hobbies;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -33,6 +31,14 @@ public class PracticeFormPage extends BasePage {
     WebElement inputSubjects;
     @FindBy(id = "currentAddress")
     WebElement textareaCurAdd;
+    @FindBy(id = "react-select-3-input")
+    WebElement inputState;
+    @FindBy(id = "react-select-4-input")
+    WebElement inputCity;
+    @FindBy(xpath = "//button[@id='submit']")
+    WebElement btnSubmit;
+    @FindBy(id = "example-modal-sizes-title-lg")
+    WebElement modalMessage;
 
     public void typePracticeForm(Student student) {
         inputFirstName.sendKeys(student.getFirstName());
@@ -45,7 +51,13 @@ public class PracticeFormPage extends BasePage {
         typeDateOfBirth(student.getDateOfBirth());
         typeSubjects(student.getSubjects());
         chooseHobbies(student.getHobbies());
+        hideFooter();
         textareaCurAdd.sendKeys(student.getAddress());
+        typeStateCity(student.getState(), student.getCity());
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].click();", btnSubmit);
+        scrollActions();
+        btnSubmit.click();
     }
 
     private void chooseGender(Gender gender) {
@@ -84,9 +96,19 @@ public class PracticeFormPage extends BasePage {
             }
         }
     }
+
+    private void typeStateCity(String state, String city) {
+        inputState.sendKeys(state);
+        inputState.sendKeys(Keys.ENTER);
+
+        inputCity.sendKeys(city);
+        inputCity.sendKeys(Keys.ENTER);
+    }
+
+    public boolean validateModalMessage(String text) {
+        return isTextInElementPresent(modalMessage, text);
+    }
 }
-
-
 
 
 
