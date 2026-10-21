@@ -90,9 +90,9 @@ public class PracticeFormPage extends BasePage {
     private void chooseHobbies(List<Hobbies> hobbies) {
         for (Hobbies h : hobbies) {
             switch (h) {
-                case SPORTS -> driver.findElement(By.id(h.getLocator())).click();
-                case READING -> driver.findElement(By.id(h.getLocator())).click();
-                case MUSIC -> driver.findElement(By.id(h.getLocator())).click();
+                case SPORTS -> driver.findElement(By.xpath(h.getLocator())).click();
+                case READING -> driver.findElement(By.xpath(h.getLocator())).click();
+                case MUSIC -> driver.findElement(By.xpath(h.getLocator())).click();
             }
         }
     }
