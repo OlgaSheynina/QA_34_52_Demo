@@ -5,9 +5,9 @@
         <groups>
             <run>
                 <include name="smoke"/>
-                <exclude name="regress"/>
             </run>
         </groups>
+
         <classes>
             <class name="tests.PracticeFormTests"/>
         </classes>
