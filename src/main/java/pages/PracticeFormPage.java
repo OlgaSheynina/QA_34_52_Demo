@@ -88,15 +88,10 @@ public class PracticeFormPage extends BasePage {
     }
 
     private void chooseHobbies(List<Hobbies> hobbies) {
+        Actions actions = new Actions(driver);
         for (Hobbies h : hobbies) {
-            switch (h) {
-                case SPORTS -> driver.findElement(By.xpath(h.getLocator())).click();
-                case READING -> driver.findElement(By.xpath(h.getLocator())).click();
-                case MUSIC -> driver.findElement(By.xpath(h.getLocator())).click();
-            }
             WebElement hobbyElement = driver.findElement(By.xpath(h.getLocator()));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", hobbyElement);
+            actions.moveToElement(hobbyElement).click().perform();
         }
     }
 
